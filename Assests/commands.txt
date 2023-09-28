@@ -1,0 +1,69 @@
+for training the model 
+model: Quaterionic ResNet 18 2D mel , 1,2,3 derivatives
+nohup python3 custom_main.py train --scale 1 --batch-size 256 --device cuda --epoch 100 --log-interval 100 --checkpoint-file QResnet182Dmelder.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/QResnet182Dmelder.out &
+
+model: ResNet 18 2D mel , 1,2,3 derivatives
+nohup python3 custom_main.py train --scale 1 --batch-size 256 --device cuda --epoch 100 --log-interval 100 --checkpoint-file Resnet182Dmelder.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/Resnet182Dmelder.out &
+
+for training QMatchBoxNet85k2Dcompatible
+nohup python3 custom_main.py train --scale 1 --batch-size 512 --device cuda --epoch 200 --log-interval 100 --checkpoint-file Weights/QMatchBoxNet85k2Dcompatible.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/QMatchBoxNet85k2Dcompatible.out &
+nohup python3 custom_main.py train --scale 1 --batch-size 512 --device cuda --epoch 200 --log-interval 100 --checkpoint-file Weights/QMatchBoxNetBB2Dcompatible.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/QMatchBoxNetBB2Dcompatible.out &
+nohup python3 custom_main.py train --scale 1 --batch-size 512 --device cuda --epoch 200 --log-interval 100 --checkpoint-file Weights/QBCResnet1.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/QBCResnet1.out &
+nohup python3 custom_main.py train --scale 1 --batch-size 512 --device cuda --epoch 200 --log-interval 100 --checkpoint-file Weights/QBCResnet6.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/QBCResnet6.out &
+
+nohup python3 custom_main2.py train --scale 1 --batch-size 512 --device cuda --epoch 100 --log-interval 100 --checkpoint-file Weights/QResnetphase.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/QResnetphase.out &
+
+
+for testing the model
+python3 custom_main.py test --model-file QResnet182Dmelder.torch --scale 1 --batch-size 256 --device cuda --dropout 0.2 --subspectral-norm 
+python3 custom_main.py test --model-file Resnet182Dmelder.torch --scale 1 --batch-size 256 --device cuda --dropout 0.2 --subspectral-norm 
+python3 custom_main.py test --model-file Resnet182D.torch --scale 1 --batch-size 256 --device cuda --dropout 0.2 --subspectral-norm 
+python3 custom_main.py test --model-file Weights/QBCResnet6.torch --scale 1 --batch-size 256 --device cuda --dropout 0.2 --subspectral-norm 
+
+
+
+for training QResNet_181d
+nohup python3 custom_main.py train --scale 1 --batch-size 256 --device cuda --epoch 200 --log-interval 100 --checkpoint-file Weights/QResNet_181d.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/QResNet_181dmelder.out &
+
+nohup python3 custom_main.py train --scale 6 --batch-size 256 --device cuda --epoch 100 --log-interval 100 --checkpoint-file Weights/BCQNoBias.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/BCQNoBias.out &
+
+
+for QORGASM training  r = for input and Weights
+nohup python3 custom_main_asm.py train --scale 6 --batch-size 512 --device cuda --epoch 200 --log-interval 100 --checkpoint-file Weights/QBCResnet6QORGASM.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/QBCResnet6QORGASM.out &
+python3 custom_main_asm.py test --model-file QBCResnet6QORGASM.torch --scale 1 --batch-size 512 --device cuda --dropout 0.2 --subspectral-norm 
+
+for QORGASM2 training  r =0 for Weights only
+nohup python3 custom_main_asm2.py train --scale 6 --batch-size 512 --device cuda --epoch 200 --log-interval 100 --checkpoint-file Weights/QBCResnet6QORGASM2.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/QBCResnet6QORGASM2.out &
+
+BCQnobias
+nohup python3 custom_main.py train --scale 6 --batch-size 256 --device cuda --epoch 100 --log-interval 100 --checkpoint-file /home/air/ARYAN_MT22019/BC_ResNet/Weights/BCQNoBias.torch --optimizer adam --dropout 0.2 --subspectral-norm > /home/air/ARYAN_MT22019/BC_ResNet/logs/BCQNoBias.out &
+
+BCnobias
+nohup python3 main.py train --scale 8 --batch-size 256 --device cuda --epoch 100 --log-interval 100 --checkpoint-file /home/air/ARYAN_MT22019/BC_ResNet/Weights/BCNoBias.torch --optimizer adam --dropout 0.2 --subspectral-norm > /home/air/ARYAN_MT22019/BC_ResNet/logs/BCNoBias.out &
+
+for BCNet1
+nohup python3 main.py train --scale 1 --batch-size 256 --device cuda --epoch 100 --log-interval 100 --checkpoint-file BCResnetscl1.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/BCResnetscl1.out &
+
+for Resnet182D:
+nohup python3 main.py train --scale 1 --batch-size 256 --device cuda --epoch 100 --log-interval 100 --checkpoint-file Weights/Resnet182D.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/Resnet182D.out &
+
+for Matchboxnet:
+nohup python3 main.py train --scale 1 --batch-size 256 --device cuda --epoch 100 --log-interval 100 --checkpoint-file Weights/Matchboxnet.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/Matchboxnet.out &
+
+
+for QMatchBoxNetBB
+nohup python3 main.py train --scale 1 --batch-size 256 --device cuda --epoch 100 --log-interval 100 --checkpoint-file Weights/QMatchBoxNetBB.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/QMatchBoxNetBB.out &
+
+
+for BCNet8
+nohup python3 main.py train --scale 8 --batch-size 256 --device cuda --epoch 200 --log-interval 100 --checkpoint-file BCResnetscl8.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/BCResnetscl8.out &
+
+
+for QMatchBoxNet34k
+nohup python3 main.py train --scale 1 --batch-size 256 --device cuda --epoch 100 --log-interval 100 --checkpoint-file Weights/QMatchBoxNet34k.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/QMatchBoxNet34k.out &
+
+
+for QMatchboxnet80k
+nohup python3 main.py train --scale 1 --batch-size 256 --device cuda --epoch 200 --log-interval 100 --checkpoint-file Weights/QMatchBoxNet80k.torch --optimizer adam --dropout 0.2 --subspectral-norm >logs/QMatchBoxNet80k.out &
+
+

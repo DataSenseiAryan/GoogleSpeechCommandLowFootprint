@@ -7,11 +7,30 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+dump.py
+gradcam.ipynb_checkpoints
+gradcam.ipynb
+model_inference.py
+model.ipynb
+nohup.out
+out.txt
+QLL.ipynb
+weightwathcercustom.py
+ResNet182D.py
+
+
+
 .Python
 build/
 develop-eggs/
 dist/
 downloads/
+SpeechCommands/
+Trainers/SpeechCommands/
+logs/
+assests/
+Matrixdump/
+Weights/
 eggs/
 .eggs/
 lib/
